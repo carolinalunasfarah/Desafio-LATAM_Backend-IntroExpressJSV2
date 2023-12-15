@@ -53,9 +53,6 @@ app.put("/canciones/:id", (req, res) => {
     try {
         const { id } = req.params;
         const cancion = req.body;
-        // We need to read the json before editing
-        const repertorioContent = fs.readFileSync("repertorio.json", "utf8");
-        const cancionesParse = JSON.parse(repertorioContent);
         const index = cancionesParse.findIndex((c) => c.id == id);
         // We have to make sure we find the correct index
         if (index !== -1) {
