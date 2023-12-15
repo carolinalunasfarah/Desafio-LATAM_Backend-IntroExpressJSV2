@@ -54,14 +54,9 @@ app.put("/canciones/:id", (req, res) => {
         const { id } = req.params;
         const cancion = req.body;
         const index = cancionesParse.findIndex((c) => c.id == id);
-        // We have to make sure we find the correct index
-        if (index !== -1) {
-            cancionesParse[index] = { ...cancionesParse[index], ...cancion };
-            fs.writeFileSync("repertorio.json", JSON.stringify(cancionesParse));
-            res.status(200).json({ message: "Canción editada con éxito" });
-        } else {
-            res.status(404).json({ error: "Canción no encontrada" });
-        }
+        cancionesParse[index] = cancion;
+        fs.writeFileSync("repertorio.json", JSON.stringify(cancionesParse));
+        res.status(200).json({ message: "Canción editada con éxito" });
     } catch (error) {
         res.status(500).json({ error: "Error al procesar solicitud" });
         console.error("Error al procesar solicitud:", error);
