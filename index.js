@@ -3,6 +3,11 @@ import express from "express";
 import fs from "fs";
 import cors from "cors";
 
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const fileContent = fs.readFileSync("repertorio.json", "utf8");
 const cancionesParse = JSON.parse(fileContent);
 
@@ -51,7 +56,7 @@ app.put("/canciones/:id", (req, res) => {
         const { id } = req.params;
         const cancion = req.body;
         cancionesParse;
-        const index = canciones.findIndex((c) => c.id == id);
+        const index = cancionesParse.findIndex((c) => c.id == id);
         cancionesParse[index] = cancion;
         fs.writeFileSync("repertorio.json", JSON.stringify(canciones));
         res.status(201).send("¡Canción agregada con éxito!");
