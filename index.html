@@ -157,6 +157,7 @@
             alert("Canción " + canciones[i].titulo + " eliminada");
             getData();
         });
+        console.log("Canción eliminada");
     }
 
     function prepararCancion(i, id) {
@@ -183,5 +184,6 @@
                 document.getElementById("agregar").style.display = "block";
                 document.getElementById("editar").style.display = "none";
             });
+        console.log("Canción editada");
     }
 </script>
